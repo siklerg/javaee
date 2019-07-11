@@ -8,10 +8,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-    <h1>Hello World!</h1>
+    <h1>Hello World!!!</h1>
+    <h1>Hello ${personBean.name}!!!</h1>
+
+
     Person name: ${personBean.name} <br/>
     <form action="personServlet" method="get">
-        <input type="text" name="name" value="">
+        <input type="text" name="name" value="" placeholder="Ide lehet írni...">
         <input type="submit" value="Set"/>
     </form>
     </body>
