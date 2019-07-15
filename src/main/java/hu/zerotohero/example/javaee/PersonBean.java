@@ -1,10 +1,11 @@
 package hu.zerotohero.example.javaee;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import java.io.Serializable;
 
-@Named
+@ManagedBean
 @SessionScoped
 public class PersonBean implements Serializable {
 
