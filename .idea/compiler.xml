@@ -10,12 +10,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="javaee" target="1.6" />
+      <module name="javaee" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="javaee" options="-endorseddirs &quot;D:\CODE GIT\javaee\javaee\target/endorsed&quot;" />
+      <module name="javaee" options="-endorseddirs &quot;D:\CODE GIT\javaee\target/endorsed&quot;" />
     </option>
   </component>
 </project>
