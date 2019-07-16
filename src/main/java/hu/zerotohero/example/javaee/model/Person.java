@@ -1,4 +1,4 @@
-package model;
+package hu.zerotohero.example.javaee.model;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package dao;
+package hu.zerotohero.example.javaee.dao;
 
-import model.BaseEntity;
+import hu.zerotohero.example.javaee.model.BaseEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

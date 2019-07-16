@@ -1,7 +1,7 @@
-package service;
+package hu.zerotohero.example.javaee.service;
 
-import dao.BaseDao;
-import model.Person;
+import hu.zerotohero.example.javaee.dao.BaseDao;
+import hu.zerotohero.example.javaee.model.Person;
 
 import javax.inject.Inject;
 import javax.inject.Named;
