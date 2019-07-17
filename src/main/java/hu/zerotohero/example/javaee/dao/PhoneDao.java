@@ -9,18 +9,20 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.List;
 
-@Stateless public class PhoneDao {
+@Stateless
+public class PhoneDao {
 
-	@PersistenceContext private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	public List<Phone> getPhonesByPerson(Person person) {
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Phone> query = criteriaBuilder.createQuery(Phone.class);
-		Root<Phone> from = query.from(Phone.class);
-		Path<Person> personField = from.get("person");
-		Predicate personPredicate = criteriaBuilder.equal(personField, person);
-		query.where(personPredicate);
-		return entityManager.createQuery(query).getResultList();
-	}
+    public List<Phone> getPhonesByPerson(Person person) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Phone> query = criteriaBuilder.createQuery(Phone.class);
+        Root<Phone> from = query.from(Phone.class);
+        Path<Person> personField = from.get("person");
+        Predicate personPredicate = criteriaBuilder.equal(personField, person);
+        query.where(personPredicate);
+        return entityManager.createQuery(query).getResultList();
+    }
 
 }

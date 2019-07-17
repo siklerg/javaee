@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="personId" value="#{phoneService.person}" converter="#{personConverter}"/>
+    </f:metadata>
+
+    <h1>Telefonszámok személyenként</h1>
+
+    <h:link outcome="/persons" value="Vissza a személyekhez"/>
+    <hr/>
+
+    <h:panelGrid columns="2">
+        Név:
+        <h:outputText value="#{phoneService.person.name}"/>
+        Születésnap:
+        <h:outputText value="#{phoneService.person.birthday}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+        </h:outputText>
+    </h:panelGrid>
+
+    <hr/>
+
+    <h:form>
+
+        <h:panelGrid columns="2">
+            Típus:
+            <h:selectOneMenu id="phoneType" binding="#{phoneType}">
+                <f:selectItem itemValue="MUNKA" itemLabel="Munka"/>
+                <f:selectItem itemValue="OTTHON" itemLabel="Otthon"/>
+            </h:selectOneMenu>
+            Telefonszám:
+            <h:inputText id="phoneNumber" binding="#{phoneNumber}"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Telefonszám hozzáadása"
+                         action="#{phoneService.addPhone(phoneType.value, phoneNumber.value)}"/>
+
+        <hr/>
+
+        <h:dataTable value="#{phoneService.phones}" var="phone" border="1" cellpadding="2" cellspacing="0">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{phone.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Típus</f:facet>
+                <h:outputText value="#{phone.type}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Telefonszám</f:facet>
+                <h:outputText value="#{phone.number}"/>
+            </h:column>
+        </h:dataTable>
+
+    </h:form>
+
+</f:view>
+</html>

@@ -31,4 +31,7 @@ public class BaseDao {
 		}
 	}
 
+	public <E extends BaseEntity> E find(Class<E> entitiyClass, Long id) {
+		return entityManager.find(entitiyClass, id);
+	}
 }
