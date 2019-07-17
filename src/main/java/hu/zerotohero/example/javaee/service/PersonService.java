@@ -15,12 +15,16 @@ public class PersonService {
 
 	public void addPerson(String name, Date birthday) {
 		Person person = new Person();
-		person.setName(name);
+		person.setName(name.trim());
 		person.setBirthday(birthday);
 		baseDao.save(person);
 	}
 
 	public List<Person> getPersons() {
 		return baseDao.query(Person.class, Person.NQ_FIND_ALL_PERSONS);
+	}
+
+	public Person getPersonByName(String name) {
+		return baseDao.queryWithNameParameter(Person.class, Person.NQ_FIND_PERSON_BY_NAME, name);
 	}
 }
