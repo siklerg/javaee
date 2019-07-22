@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Stateless
@@ -23,6 +24,11 @@ public class PhoneDao {
         Predicate personPredicate = criteriaBuilder.equal(personField, person);
         query.where(personPredicate);
         return entityManager.createQuery(query).getResultList();
+    }
+
+    @Transactional
+    public void deletePhone(Phone phone) {
+        entityManager.remove(entityManager.contains(phone) ? phone : entityManager.merge(phone));
     }
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <f:view>
     <h1>Személyek</h1>
     <hr/>
@@ -13,7 +13,8 @@
             Név:
             <h:inputText id="personName" binding="#{personName}"/>
             Születési dátum:
-            <h:inputText id="personBirthday" binding="#{personBirthday}" title="Format: yyyy-MM-dd, eg.: 1980-06-25">
+            <h:inputText id="personBirthday" binding="#{personBirthday}" title="Formátum: éééé-HH-nn, pl.: 1980-06-25"
+                         pt:placeholder="éééé-HH-nn">
                 <f:convertDateTime pattern="yyyy-MM-dd"/>
             </h:inputText>
         </h:panelGrid>
@@ -38,9 +39,15 @@
                 </h:outputText>
             </h:column>
             <h:column>
-                <h:link value="Phones" outcome="/phones">
+                <f:facet name="header">Telefonszámok</f:facet>
+                <h:link value="#{person.name} számai" outcome="/phones">
                     <f:param name="personId" value="#{person.id}"/>
                 </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Törlés</f:facet>
+                <h:commandButton value="Törlés" action="#{personService.deletePerson(person)}">
+                </h:commandButton>
             </h:column>
         </h:dataTable>
 
