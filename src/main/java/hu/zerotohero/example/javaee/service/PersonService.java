@@ -3,10 +3,10 @@ package hu.zerotohero.example.javaee.service;
 import hu.zerotohero.example.javaee.dao.BaseDao;
 import hu.zerotohero.example.javaee.dao.PhoneDao;
 import hu.zerotohero.example.javaee.model.Person;
-import hu.zerotohero.example.javaee.model.Phone;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -25,18 +25,16 @@ public class PersonService {
         baseDao.save(person);
     }
 
-    public String deletePerson(Person person) {
-        System.out.println("---> " + person.getId() + " id-s person törlése by Service");
-        List<Phone> phones = phoneDao.getPhonesByPerson(person);
-        System.out.println("---> Telefonszámok száma: " + phones.size());
-        if (!phones.isEmpty()) {
-            for (Phone phone : phones
-            ) {
-                phoneDao.deletePhone(phone);
-            }
-        }
+    @Transactional
+    public void deletePerson(Person person) {
+//        List<Phone> phones = phoneDao.getPhonesByPerson(person);
+//        if (!phones.isEmpty()) {
+//            for (Phone phone : phones
+//            ) {
+//                phoneDao.deletePhone(phone);
+//            }
+//        }
         baseDao.deletePerson(person);
-        return null;
     }
 
     public List<Person> getPersons() {

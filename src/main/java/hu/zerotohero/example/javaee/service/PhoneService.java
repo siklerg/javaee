@@ -9,6 +9,7 @@ import hu.zerotohero.example.javaee.model.PhoneType;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Named
@@ -41,5 +42,11 @@ public class PhoneService {
 
     public List<Phone> getPhones() {
         return phoneDao.getPhonesByPerson(person);
+    }
+
+    @Transactional
+    public void deletePhone(Phone phone) {
+        System.out.println("Delete clicked...");
+        phoneDao.deletePhone(phone);
     }
 }

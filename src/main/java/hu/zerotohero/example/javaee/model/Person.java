@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -36,4 +37,7 @@ public class Person extends BaseEntity {
         this.name = name;
         this.birthday = birthday;
     }
+
+    @OneToMany(mappedBy = "person", orphanRemoval = true)
+    private Collection<Phone> phones;
 }

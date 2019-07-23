@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Stateless
@@ -46,10 +45,9 @@ public class BaseDao {
         return entityManager.find(entityClass, id);
     }
 
-    @Transactional
     public void deletePerson(Person person) {
         logger.info("---> " + person.getId() + " id-s person törlése by DAO");
-        entityManager.remove(entityManager.find(Person.class, person.getId()));
+		entityManager.remove(entityManager.contains(person) ? person : entityManager.merge(person));
     }
 
 }

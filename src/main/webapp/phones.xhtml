@@ -54,6 +54,11 @@
                 <f:facet name="header">Telefonszám</f:facet>
                 <h:outputText value="#{phone.number}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">Törlés</f:facet>
+                <h:commandButton value="Törlés" action="#{phoneService.deletePhone(phone)}">
+                </h:commandButton>
+            </h:column>
         </h:dataTable>
 
     </h:form>
